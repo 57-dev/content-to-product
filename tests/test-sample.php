@@ -5,7 +5,7 @@
  * @package Gajeplugin
  */
 
-use Scd\Api\Menu;
+use CTP\Api\Menu;
 /**
  * Sample test case.
  */
