@@ -1,4 +1,4 @@
-name: SCD Next generation pipeline
+name: COntent to product pipeline
 on: [push]
 jobs:
   Explore-GitHub-Actions:
