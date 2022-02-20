@@ -1,4 +1,4 @@
-name: Content To Product Pipeline
+name: SCD Next generation pipeline
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -26,14 +26,15 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Code Formating
         run: |
-          ${{ github.workspace }}/vendor/bin/phpcbf
+          chmod +x ${{ github.repository }}/vendor/bin/phpcbf
+          ${{ github.repository }}/vendor/bin/phpcbf
       - name: Code Sniffing
         run: |
-          chmod +x ${{ github.workspace }}/vendor/bin/phpcs
-          ${{ github.workspace }}/vendor/bin/phpcs
+          chmod +x ${{ github.repository }}/vendor/bin/phpcs
+          ${{ github.repository }}/vendor/bin/phpcs
       - name: Unit Testing
         run: |
-          bash ${{ github.workspace }}/bin/install-wp-tests.sh wordpress_test wordpress_test 'wordpress_test' 0.0.0.0:33306
-          chmod +x ${{ github.workspace }}/vendor/bin/phpunit
-          ${{ github.workspace }}/vendor/bin/phpunit
+          bash ${{ github.repository }}/bin/install-wp-tests.sh wordpress_test wordpress_test 'wordpress_test' 0.0.0.0:33306
+          chmod +x ${{ github.repository }}/vendor/bin/phpunit
+          ${{ github.repository }}/vendor/bin/phpunit
       - run: echo "🍏 This job's status is ${{ job.status }}."
