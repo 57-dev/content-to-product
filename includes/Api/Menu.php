@@ -95,7 +95,7 @@ class Menu {
 	 * Get the value of capability
 	 */
 	public function get_capability() {
-		return '';
+		return apply_filters( 'ctp_menu_capability', 'manage_options' );
 	}
 
 	/**
@@ -109,6 +109,6 @@ class Menu {
 	 * Get the value of position
 	 */
 	public function get_position() {
-		return '';
+		return apply_filters( 'ctp_menu_position', '55.4' );
 	}
 }

@@ -55,7 +55,7 @@ final class CTP {
 	 *
 	 * @var string
 	 */
-	public $version = '5.0.0';
+	public $version = '1.0.0';
 
 	/**
 	 * Instance of self
@@ -138,6 +138,10 @@ final class CTP {
 	 * @return void
 	 */
 	public function init_classes() {
+		new CTP\Base\Enqueue();
+		if ( is_admin() ) {
+			new \CTP\Admin\AdminMenu();
+		}
 	}
 }
 
