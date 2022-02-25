@@ -11,12 +11,14 @@
 
 ?>
 <div class="container-fluid scd_boder">
+	<?php do_action( 'ctp_before_article_list' ); ?>
+	<form action="#" method="POST">
+	<input type="hidden" name="_wpnonce" value="<?php echo esc_html( $nonce ); ?>">
 	<?php
 	if ( $articles->have_posts() ) :
 		while ( $articles->have_posts() ) :
 			$articles->the_post();
 			?>
-			<form action="#" method="POST">
 				<div class="card-body row p-0  mx-0 w-100 justify-content-between text-dark">
 					<small for="" class="col-form-label mx-0 px-0"><strong>Titre : <?php echo esc_html( the_title() ); ?></strong></small>
 					<div class="form-group row w-100 mx-0 mb-0">
@@ -35,18 +37,26 @@
 		endwhile;
 	endif;
 	?>
-		<ul class="text-dark d-flex row w-100 mx-0">
-			<?php foreach ( $page_links as $ctp_page_link ) : ?>
-				<li class="mx-2">
-					<?php if ( isset( $_GET['paged'] ) && $ctp_page_link->page === $_GET['paged'] ) : ?>
-						<strong><?php esc_html( $ctp_page_link->page ); ?></strong>
-					<?php else : ?>
-						<a href="<?php esc_attr( $ctp_page_link->url ); ?>">
-							<?php echo esc_html( $ctp_page_link->page ); ?>
-						</a>
-					<?php endif; ?>
-				</li>
-			<?php endforeach; ?>
-		</ul>
+		<div class="row mx-0 w-100 d-flex justify-content-end">
+			<div><strong>Page</strong> : </div>
+			<div>
+				<ul class="text-dark d-flex row w-100 m-0">
+					<?php foreach ( $page_links as $ctp_page_link ) : ?>
+						<li class="mx-2">
+							<?php if ( isset( $_GET['paged'] ) && $ctp_page_link->page === $_GET['paged'] ) : ?>
+								<strong><?php esc_html( $ctp_page_link->page ); ?></strong>
+							<?php else : ?>
+								<a href="<?php esc_attr( $ctp_page_link->url ); ?>">
+									<?php echo esc_html( $ctp_page_link->page ); ?>
+								</a>
+							<?php endif; ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<button class="w-100 btn btn-succes mb-3">save</button>
 			</form>
+			<?php do_action( 'ctp_after_article_list' ); ?>
 </div>

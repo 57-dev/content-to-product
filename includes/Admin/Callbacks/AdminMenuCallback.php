@@ -26,6 +26,7 @@ class AdminMenuCallback extends MenuCallbacks {
 	public function dashboard() {
 		$articles   = Article::get();
 		$page_links = $this->wpdocs_get_paginated_links( $articles );
+		$nonce      = wp_create_nonce( 'ctp-57-nonce' );
 		include CTP_DIR . '/templates/admin/body.php';
 	}
 
