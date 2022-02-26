@@ -9,6 +9,9 @@
         }
     ],
     "autoload": {
+        "files" : [
+            "includes/helpers.php"
+        ],
         "psr-4": {
             "CTP\\" : "includes/"
         }

@@ -22,7 +22,7 @@ class ArticleController {
 	 * @return void
 	 */
 	public function __construct() {
-		add_action( 'ctp_before_article_list', array( $this, 'store' ), 10, 1 );
+		add_action( 'ctp_before_article_list', array( $this, 'store' ) );
 	}
 
 	/**
@@ -42,6 +42,8 @@ class ArticleController {
 					$article_price       = ( isset( $_POST['article_price'][ $i ] ) ) ? sanitize_key( $_POST['article_price'][ $i ] ) : '';
 
 					$this->create_product( $aticle_id, $article_name, $article_description, $article_price );
+
+					$_SESSION['success'] = 'Saved with suuccess!';
 				}
 			}
 		}

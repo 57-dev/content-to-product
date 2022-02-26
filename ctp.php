@@ -140,6 +140,7 @@ final class CTP {
 	public function init_classes() {
 		new CTP\Base\Enqueue();
 		new CTP\Controller\Admin\ArticleController();
+		new CTP\Controller\Admin\MessageController();
 		if ( is_admin() ) {
 			new \CTP\Admin\AdminMenu();
 		}

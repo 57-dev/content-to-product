@@ -14,12 +14,13 @@
 	<?php do_action( 'ctp_before_article_list' ); ?>
 	<form action="#" method="POST">
 	<input type="hidden" name="_wpnonce" value="<?php echo esc_html( $nonce ); ?>">
+	<div class="mt-3"><?php echo wp_kses( ctp_alert(), ctp_allow_html() ); ?></div>
 	<?php
 	if ( $articles->have_posts() ) :
 		while ( $articles->have_posts() ) :
 			$articles->the_post();
 			?>
-				<div class="card-body row p-0  mx-0 w-100 justify-content-between text-dark">
+				<div class="card-body row p-0  mx-0 w-100 justify-content-between text-dark my-3">
 					<small for="" class="col-form-label mx-0 px-0"><strong>Titre : <?php echo esc_html( the_title() ); ?></strong></small>
 					<div class="form-group row w-100 mx-0 mb-0">
 						<label for="" class="col-form-label mx-0 px-0"><strong>Price (<?php echo esc_html( get_woocommerce_currency_symbol() ); ?>) </strong> :</label>
