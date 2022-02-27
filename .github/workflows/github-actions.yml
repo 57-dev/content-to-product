@@ -40,4 +40,17 @@ jobs:
           bash ${{ github.workspace }}/bin/install-wp-tests.sh wordpress_test wordpress_test 'wordpress_test' 0.0.0.0:33306
           chmod +x ${{ github.workspace }}/vendor/bin/phpunit
           ${{ github.workspace }}/vendor/bin/phpunit
+      - name: Deleting Test folder
+        run: |
+          rm -rf ${{ github.workspace }}/tests
+      - name:  Deleting bin folder
+        run: |
+          rm -rf ${{ github.workspace }}/bin
+      - name:  Deleting files
+        run: |
+          rm -f ${{ github.workspace }}/.phpcs.xml.dist
+          rm -f ${{ github.workspace }}/.composer.json
+      - name:  Deleting github folder
+        run: |
+          rm -rf ${{ github.workspace }}/.github
       - run: echo "🍏 This job's status is ${{ job.status }}."
