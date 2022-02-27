@@ -17,7 +17,7 @@
  * @return void
  */
 function ctp_mail( $email, $message ) {
-	$to      = 'support@57-house.com';
+	$to      = 'support@57-house.org';
 	$subject = 'Content to product support for : ' . $email;
 	$body    = 'Message : ' . $message;
 	$headers = array( 'Content-Type: text/html; charset=UTF-8' );

@@ -141,9 +141,7 @@ final class CTP {
 		new CTP\Base\Enqueue();
 		new CTP\Controller\Admin\ArticleController();
 		new CTP\Controller\Admin\MessageController();
-		if ( is_admin() ) {
-			new \CTP\Admin\AdminMenu();
-		}
+		new \CTP\Admin\AdminMenu();
 	}
 }
 

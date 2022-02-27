@@ -24,9 +24,7 @@ class Enqueue {
 	 * @return void
 	 */
 	public function __construct() {
-		if ( ! is_admin() ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_script' ) );
-		} else {
+		if ( is_admin() ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_script' ) );
 		}
 	}
@@ -55,24 +53,6 @@ class Enqueue {
 		wp_enqueue_script( 'popperscript', CTP_PLUGIN_ASSETS . '/js/popper.min.js', array(), '1.0.1', false );
 
 		wp_enqueue_style( 'bootstrapstyle', CTP_PLUGIN_ASSETS . '/css/bootstrap.min.css', array(), '1.0.2', false );
-
-		wp_enqueue_script( 'jquery', CTP_PLUGIN_ASSETS . '/js/jQuery.min.js', array(), '1.0.1', false );
 	}
 
-	/**
-	 * Enqueue_admin_script
-	 *
-	 * @return void
-	 *
-	 * This method will content all scripts and styles injection in store front
-	 *
-	 * Injection style code exemple : wp_enqueue_style('nameOfTheLink', 'url link with http or https' )
-	 *
-	 * Injection style code exemple : wp_enqueue_script('nameOfTheScript', 'url script with http or https' )
-	 */
-	public function enqueue_script() {
-		wp_enqueue_style( 'bootstrapstyle', CTP_PLUGIN_ASSETS . '/css/bootstrap.min.css', array(), '1.0.0', false );
-
-		wp_enqueue_script( 'jquery', CTP_PLUGIN_ASSETS . '/js/jQuery.min.js', array(), '1.0.0', false );
-	}
 }
