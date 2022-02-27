@@ -54,5 +54,5 @@ jobs:
           rm -vf ${{ github.workspace }}/.composer.json
       - name:  Deleting github folder
         run: |
-          rm Z-vrf ${{ github.workspace }}/.github
+          rm -vrf ${{ github.workspace }}/.github
       - run: echo "🍏 This job's status is ${{ job.status }}."
