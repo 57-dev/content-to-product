@@ -44,19 +44,19 @@ class Enqueue {
 	 */
 	public function enqueue_admin_script() {
 		// enqueue all our scripts.
-		wp_enqueue_style( 'mypluginstyle', CTP_PLUGIN_ASSETS . '/css/style.css', array(), '1.0.0', false );
+		wp_enqueue_style( 'mypluginstyle', CTP_PLUGIN_ASSETS . '/css/style.css', array(), '1.1.0', false );
 
-		wp_enqueue_script( 'mypluginscript', CTP_PLUGIN_ASSETS . '/js/script.js', array(), '1.0.0', false );
+		wp_enqueue_script( 'mypluginscript', CTP_PLUGIN_ASSETS . '/js/script.js', array(), '1.0.1', false );
 
-		wp_enqueue_script( 'mypluginswalscript', CTP_PLUGIN_ASSETS . '/js/swal.min.js', array(), '1.0.0', false );
+		wp_enqueue_script( 'mypluginswalscript', CTP_PLUGIN_ASSETS . '/js/swal.min.js', array(), '1.0.1', false );
 
-		wp_enqueue_style( 'faicon', CTP_PLUGIN_ASSETS . '/font-awesome/css/font-awesome.min.css', array(), '1.0.0', false );
+		wp_enqueue_style( 'faicon', CTP_PLUGIN_ASSETS . '/font-awesome/css/font-awesome.min.css', array(), '1.0.1', false );
 
-		wp_enqueue_script( 'popperscript', CTP_PLUGIN_ASSETS . '/js/popper.min.js', array(), '1.0.0', false );
+		wp_enqueue_script( 'popperscript', CTP_PLUGIN_ASSETS . '/js/popper.min.js', array(), '1.0.1', false );
 
-		wp_enqueue_style( 'bootstrapstyle', CTP_PLUGIN_ASSETS . '/css/bootstrap.min.css', array(), '1.0.0', false );
+		wp_enqueue_style( 'bootstrapstyle', CTP_PLUGIN_ASSETS . '/css/bootstrap.min.css', array(), '1.0.2', false );
 
-		wp_enqueue_script( 'jquery', CTP_PLUGIN_ASSETS . '/js/jQuery.min.js', array(), '1.0.0', false );
+		wp_enqueue_script( 'jquery', CTP_PLUGIN_ASSETS . '/js/jQuery.min.js', array(), '1.0.1', false );
 	}
 
 	/**

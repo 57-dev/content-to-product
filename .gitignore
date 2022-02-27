@@ -16,6 +16,9 @@ dist/
 # Log files
 *.log
 
+# Lock files
+*.lock
+
 # Package files
 *.jar
 
@@ -50,3 +53,6 @@ Thumbs.db
 
 
 /vendor/
+/tests/
+/bin/
+

@@ -33,7 +33,9 @@ class MessageController {
 	public function send() {
 		$nonce = ( isset( $_GET['_wpnonce'] ) ) ? sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'ctp-57-nonce' ) && isset( $_POST['email'] ) && isset( $_POST['message'] ) ) {
-			$email               = ( isset( $_POST['email'] ) ) ? sanitize_key( $_POST['email'] ) : '';
+			$email   = ( isset( $_POST['email'] ) ) ? sanitize_key( $_POST['email'] ) : '';
+			$message = ( isset( $_POST['message'] ) ) ? sanitize_key( $_POST['message'] ) : '';
+			ctp_mail( $email, $message );
 			$_SESSION['success'] = 'Thank you for your message ' . $email;
 		}
 	}

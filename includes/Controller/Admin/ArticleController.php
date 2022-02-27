@@ -23,6 +23,9 @@ class ArticleController {
 	 */
 	public function __construct() {
 		add_action( 'ctp_before_article_list', array( $this, 'store' ) );
+		add_filter( 'woocommerce_checkout_fields', array( $this, 'remove_somw_checkout_fields' ) );
+		add_action( 'wp_loaded', array( $this, 'checking' ) );
+		add_action( 'woocommerce_thankyou', array( $this, 'thank_you_page_action' ) );
 	}
 
 	/**
@@ -82,4 +85,97 @@ class ArticleController {
 		update_post_meta( $post_article_id, '_article_product_id', $post_id );
 		update_post_meta( $post_id, '_product_article_id', $post_article_id );
 	}
+
+
+
+
+	/**
+	 * Checking
+	 *
+	 * @return void
+	 */
+	public function checking() {
+		$nonce = ( isset( $_GET['_wpnonce'] ) ) ? sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ) : '';
+		if ( ! wp_verify_nonce( $nonce, 'ctp-57-nonce' ) && isset( $_POST['email_access'] ) ) {
+			$email                          = ( isset( $_POST['email_access'] ) ) ? sanitize_email( wp_unslash( $_POST['email_access'] ) ) : '';
+			$_SESSION['email_access']       = $email;
+			$_SESSION['email_access_error'] = "Desole cette adresse n'a pas acces a l'article";
+		}
+		$uri      = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : array();
+		$link     = isset( $_SERVER['REQUEST_URI'] ) ? explode( '/', $uri ) : array();
+		$size     = count( $link );
+		$the_slug = '' === $link[ $size - 1 ] ? $link[ $size - 2 ] : $link[ $size - 1 ];
+		if ( '' !== $the_slug ) {
+			$args     = array(
+				'name'        => $the_slug,
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'numberposts' => 1,
+			);
+			$my_posts = get_posts( $args );
+
+			if ( $my_posts && '' !== get_post_meta( $my_posts[0]->ID, '_article_product_price', true ) && get_post_meta( $my_posts[0]->ID, '_article_product_price', true ) > 0 ) :
+				$product_id = get_post_meta( $my_posts[0]->ID, '_article_product_id', true );
+				$this->add_to_checkout( $product_id );
+				update_post_meta( $product_id, '_product_article_id', $my_posts[0]->ID );
+				update_post_meta( $product_id, '_product_article_url', get_permalink( $my_posts[0]->ID ) );
+				if ( ! isset( $_SESSION['email_access'] ) || '' === $_SESSION['email_access'] || '' === get_post_meta( $product_id, $_SESSION['email_access'], true ) ) {
+					include CTP_PLUGIN_TEMPLATE_DIR . '/visitor/modal.php';
+					die;
+				}
+			endif;
+		}
+	}
+
+
+	/**
+	 * Add_to_checkout
+	 *
+	 * @param  mixed $product_id
+	 * @return void
+	 */
+	private function add_to_checkout( $product_id ) {
+		$cart = WC()->cart;
+		$cart->empty_cart();
+		$cart->add_to_cart( $product_id );
+	}
+
+
+
+	/**
+	 * Remove_somw_checkout_fields
+	 *
+	 * @param  mixed $fields
+	 * @return array
+	 */
+	public function remove_somw_checkout_fields( $fields ) {
+		$fields['billing']['billing_first_name'] = $_SESSION['email_access'] ?? '';
+		unset( $fields['billing']['billing_company'] );
+		unset( $fields['billing']['name'] );
+		unset( $fields['billing']['billing_postcode'] );
+		unset( $fields['billing']['billing_phone'] );
+		unset( $fields['billing']['billing_state'] );
+		unset( $fields['billing']['billing_city'] );
+		unset( $fields['billing']['billing_address_2'] );
+		unset( $fields['billing']['billing_address_1'] );
+		unset( $fields['billing']['billing_country'] );
+		unset( $fields['billing']['billing_last_name'] );
+		unset( $fields['billing']['billing_first_name'] );
+
+		return $fields;
+	}
+
+	/**
+	 * Thank_you_page_action
+	 *
+	 * @param  mixed $order_id
+	 * @return void
+	 */
+	public function thank_you_page_action( $order_id ) {
+		$order                    = ( wc_get_order( $order_id ) );
+		$order_data               = $order->get_data();
+		$_SESSION['email_access'] = $order_data['billing']['email'];
+		include CTP_DIR . '/templates/visitor/thankyou.php';
+	}
+
 }

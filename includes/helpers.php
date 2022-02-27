@@ -10,6 +10,20 @@
  */
 
 /**
+ * Ctp_mail
+ *
+ * @param  mixed $email
+ * @param  mixed $message
+ * @return void
+ */
+function ctp_mail( $email, $message ) {
+	$to      = 'support@57-house.com';
+	$subject = 'Content to product support for : ' . $email;
+	$body    = 'Message : ' . $message;
+	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+	wp_mail( $to, $subject, $body, $headers );
+}
+/**
  * Alert
  *
  * @since 3.0.0

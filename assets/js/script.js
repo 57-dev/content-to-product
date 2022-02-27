@@ -1,27 +1,27 @@
 /*
 Author: dump501
-admin_ui.scd.js (c) 2021
+admin_ui.ctp.js (c) 2021
 Desc: manage admin user interface
 */
 window.addEventListener("load", function () {
 
     //global 
-    const scdBody = document.querySelector('.scd_body');
-    const scdGeneralSettingsBtn = document.querySelector('#general_settings');
-    const scdHelpSuppportBtn = document.querySelector('#help_support');
+    const ctpBody = document.querySelector('.ctp_body');
+    const ctpGeneralSettingsBtn = document.querySelector('#general_settings');
+    const ctpHelpSuppportBtn = document.querySelector('#help_support');
 
-    const scdGeneralSettingsContent = document.querySelector('#general_settings_content');
-    const scdHelpSuppportContent = document.querySelector('#help_support_content');
+    const ctpGeneralSettingsContent = document.querySelector('#general_settings_content');
+    const ctpHelpSuppportContent = document.querySelector('#help_support_content');
 
-    console.log(scdHelpSuppportContent)
-    const scdSettingContent = [
-        scdGeneralSettingsContent,
-        scdHelpSuppportContent
+    console.log(ctpHelpSuppportContent)
+    const ctpSettingContent = [
+        ctpGeneralSettingsContent,
+        ctpHelpSuppportContent
     ];
 
-    const scdSettingBtn = [
-        scdGeneralSettingsBtn,
-        scdHelpSuppportBtn
+    const ctpSettingBtn = [
+        ctpGeneralSettingsBtn,
+        ctpHelpSuppportBtn
     ];
 
     if (document.querySelector(localStorage['active_item']) !== null) {
@@ -30,20 +30,20 @@ window.addEventListener("load", function () {
         if (document.querySelector(localStorage['active_item'] + '_content') !== null) {
             document.querySelector(localStorage['active_item'] + '_content').style.display = "block";
         }
-        scdBody.classList.remove('d-none')
+        ctpBody.classList.remove('d-none')
     } else {
-        scdBody.classList.remove('d-none')
+        ctpBody.classList.remove('d-none')
         hideContents();
-        localStorage['active_item'] = '#' + scdSubscriptionManagerBtn.id
-        scdSubscriptionManagerBtn.classList.add("active");
-        scdSubscriptionManagerContent.style.display = "block";
+        localStorage['active_item'] = '#' + ctpGeneralSettingsBtn.id
+        ctpGeneralSettingsBtn.classList.add("active");
+        ctpGeneralSettingsContent.style.display = "block";
 
     }
 
 
     //event listeners
-    if (scdGeneralSettingsBtn !== null) { scdGeneralSettingsBtn.addEventListener('click', handleGeneralSettings) }
-    if (scdHelpSuppportBtn !== null) { scdHelpSuppportBtn.addEventListener('click', handleHelpSupport) }
+    if (ctpGeneralSettingsBtn !== null) { ctpGeneralSettingsBtn.addEventListener('click', handleGeneralSettings) }
+    if (ctpHelpSuppportBtn !== null) { ctpHelpSuppportBtn.addEventListener('click', handleHelpSupport) }
 
 
     //functions
@@ -59,13 +59,13 @@ window.addEventListener("load", function () {
      */
     function hideContents() {
 
-        for (let content of scdSettingContent) {
+        for (let content of ctpSettingContent) {
             if (content !== null) {
                 content.style.display = "none";
             }
         }
 
-        for (const btn of scdSettingBtn) {
+        for (const btn of ctpSettingBtn) {
             if (btn !== null) {
                 btn.classList.remove("active");
             }
@@ -81,9 +81,9 @@ window.addEventListener("load", function () {
     function handleGeneralSettings(e) {
         e.preventDefault();
         hideContents();
-        localStorage['active_item'] = '#' + scdGeneralSettingsBtn.id
-        scdGeneralSettingsBtn.classList.add("active");
-        scdGeneralSettingsContent.style.display = "block";
+        localStorage['active_item'] = '#' + ctpGeneralSettingsBtn.id
+        ctpGeneralSettingsBtn.classList.add("active");
+        ctpGeneralSettingsContent.style.display = "block";
 
     }
 
@@ -95,9 +95,9 @@ window.addEventListener("load", function () {
     function handleHelpSupport(e) {
         e.preventDefault();
         hideContents();
-        localStorage['active_item'] = '#' + scdHelpSuppportBtn.id
-        scdHelpSuppportBtn.classList.add("active");
-        scdHelpSuppportContent.style.display = "block";
+        localStorage['active_item'] = '#' + ctpHelpSuppportBtn.id
+        ctpHelpSuppportBtn.classList.add("active");
+        ctpHelpSuppportContent.style.display = "block";
     }
 
 })

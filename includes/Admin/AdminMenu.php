@@ -55,7 +55,7 @@ class AdminMenu extends Menu {
 	 *
 	 * @return AdminMenuCallback
 	 */
-	public function get_callback_class() : AdminMenuCallback {
+	public function get_callback_class() {
 		return new AdminMenuCallback();
 	}
 }

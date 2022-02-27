@@ -10,7 +10,7 @@
  */
 
 ?>
-<div class="container-fluid scd_boder">
+<div class="container-fluid ctp_boder">
 	<?php do_action( 'ctp_before_help_form' ); ?>
 	<form action="#" method="POST">
 		<div class="col-md my-3">
@@ -23,9 +23,9 @@
 		</div>
 		<div class="col-md mb-3">
 			<label for="validationTooltip01"><strong>Message : </strong></label>
-			<textarea name="message" id="" class="form-control shadow-sm rounded-0" cols="30" rows="10" placeholder="Hi, Tell us how can we help you ?"></textarea>
+			<textarea name="message" id="" class="form-control shadow-sm rounded-0" cols="30" rows="10" placeholder="Hi, Tell us how can we help you ?" required></textarea>
 			<hr>
-			<button class="w-100 btn btn-succes mb-3">Envoyer</button>
+			<button class="w-100 btn btn-succes mb-3 ctp-bg-secondary ctp-shadow">Envoyer</button>
 		</div>
 	</form>
 	<?php do_action( 'ctp_after_help_form' ); ?>
