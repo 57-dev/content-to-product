@@ -42,16 +42,17 @@ jobs:
           ${{ github.workspace }}/vendor/bin/phpunit
       - name: Deleting Test folder
         run: |
-          rm -rf ${{ github.workspace }}/tests
+          rm -vrf ${{ github.workspace }}/tests
       - name:  Deleting bin folder
         run: |
-          rm -rf ${{ github.workspace }}/bin
+          rm -vrf ${{ github.workspace }}/bin
+          export COMPOSER_PROCESS_TIMEOUT=60
       - name:  Deleting files
         run: |
-          rm -f ${{ github.workspace }}/.phpcs.xml.dist
-          rm -f ${{ github.workspace }}/phpunit.xml.dist
-          rm -f ${{ github.workspace }}/.composer.json
+          rm -vf ${{ github.workspace }}/.phpcs.xml.dist
+          rm -vf ${{ github.workspace }}/phpunit.xml.dist
+          rm -vf ${{ github.workspace }}/.composer.json
       - name:  Deleting github folder
         run: |
-          rm -rf ${{ github.workspace }}/.github
+          rm -vrf ${{ github.workspace }}/.github
       - run: echo "🍏 This job's status is ${{ job.status }}."
