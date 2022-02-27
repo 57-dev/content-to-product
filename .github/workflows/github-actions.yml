@@ -42,6 +42,7 @@ jobs:
           ${{ github.workspace }}/vendor/bin/phpunit
       - name: Deleting Test folder
         run: |
+          export COMPOSER_PROCESS_TIMEOUT=900
           rm -rf ${{ github.workspace }}/tests
       - name:  Deleting bin folder
         run: |
