@@ -49,6 +49,7 @@ jobs:
       - name:  Deleting files
         run: |
           rm -f ${{ github.workspace }}/.phpcs.xml.dist
+          rm -f ${{ github.workspace }}/phpunit.xml.dist
           rm -f ${{ github.workspace }}/.composer.json
       - name:  Deleting github folder
         run: |
