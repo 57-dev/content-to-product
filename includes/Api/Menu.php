@@ -87,7 +87,7 @@ class Menu {
 	 *
 	 * @return MenuCallbacks
 	 */
-	public function get_callback_class(): MenuCallbacks {
+	public function get_callback_class() {
 		return new MenuCallbacks();
 	}
 
@@ -109,6 +109,6 @@ class Menu {
 	 * Get the value of position
 	 */
 	public function get_position() {
-		return apply_filters( 'ctp_menu_position', '55.4' );
+		return apply_filters( 'ctp_menu_position', '5' );
 	}
 }

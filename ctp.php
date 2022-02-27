@@ -3,7 +3,7 @@
  * Plugin Name: Content To Product
  * Plugin URI: http://57-house.org/public/datamboa
  * Description: CTP(Content To Product) is a woocommerce plugin that allows owners of websites designed with the WordPress cms to sell the articles they publish.
- * Version: 1.0
+ * Version: 1.0.0
  * Author: 57-house
  * Author URI: http://57-house.org
  * Copyright (c) 2021 Gajelabs (njiegnamnjuhdonald@gmail.com: your email). All rights reserved.
