@@ -39,14 +39,14 @@ class ArticleController {
 			$size = count( $_POST['article_id'] );
 			for ( $i = 0; $i < $size; $i++ ) {
 				if ( isset( $_POST['article_price'][ $i ] ) && ( '' !== $_POST['article_price'][ $i ] ) ) {
-					$aticle_id           = ( isset( $_POST['article_id'][ $i ] ) ) ? sanitize_key( $_POST['article_id'][ $i ] ) : '';
-					$article_name        = ( isset( $_POST['article_name'][ $i ] ) ) ? sanitize_key( $_POST['article_name'][ $i ] ) : '';
-					$article_description = ( isset( $_POST['article_description'][ $i ] ) ) ? sanitize_key( $_POST['article_description'][ $i ] ) : '';
-					$article_price       = ( isset( $_POST['article_price'][ $i ] ) ) ? sanitize_key( $_POST['article_price'][ $i ] ) : '';
+					$aticle_id           = ( isset( $_POST['article_id'][ $i ] ) ) ? sanitize_text_field( $_POST['article_id'][ $i ] ) : '';
+					$article_name        = ( isset( $_POST['article_name'][ $i ] ) ) ? sanitize_text_field( $_POST['article_name'][ $i ] ) : '';
+					$article_description = ( isset( $_POST['article_description'][ $i ] ) ) ? sanitize_text_field( $_POST['article_description'][ $i ] ) : '';
+					$article_price       = ( isset( $_POST['article_price'][ $i ] ) ) ? sanitize_text_field( $_POST['article_price'][ $i ] ) : '';
 
 					$this->create_product( $aticle_id, $article_name, $article_description, $article_price );
 
-					$_SESSION['success'] = 'Saved with suuccess!';
+					$_SESSION['success'] = 'Saved with success!';
 				}
 			}
 		}
