@@ -48,7 +48,7 @@ class Enqueue {
 
 		wp_enqueue_script( 'mypluginswalscript', CTP_PLUGIN_ASSETS . '/js/swal.min.js', array(), '1.0.1', false );
 
-		wp_enqueue_style( 'faicon', CTP_PLUGIN_ASSETS . '/font-awesome/css/font-awesome.min.css', array(), '1.0.7', false );
+		wp_enqueue_style( 'faicon', CTP_PLUGIN_ASSETS . '/font-awesome/css/font-awesome.min.css', array(), '1.0.8', false );
 
 		wp_enqueue_style( 'bootstrapstyle', CTP_PLUGIN_ASSETS . '/css/bootstrap.min.css', array(), '1.0.2', false );
 	}

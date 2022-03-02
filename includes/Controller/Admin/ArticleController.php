@@ -46,7 +46,7 @@ class ArticleController {
 
 					$this->create_product( $aticle_id, $article_name, $article_description, $article_price );
 
-					$_SESSION['success'] = 'Saved with suuccess!';
+					$_SESSION['success'] = 'Saved with success!';
 				}
 			}
 		}
