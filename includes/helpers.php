@@ -34,7 +34,7 @@ function ctp_alert() : string {
 	$alert = '';
 
 	if ( isset( $_SESSION['success'] ) ) {
-		$alert = '<div class="alert alert-success rounded-0">' . $_SESSION['success'] . '</div>';
+		$alert = '<div class="alert alert-success rounded-0">' . sanitize_text_field( $_SESSION['success'] ) . '</div>';
 
 		unset( $_SESSION['success'] );
 	}
