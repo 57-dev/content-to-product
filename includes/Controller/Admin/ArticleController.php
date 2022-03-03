@@ -38,15 +38,28 @@ class ArticleController {
 		if ( ! wp_verify_nonce( $nonce, 'ctp-57-nonce' ) && isset( $_POST['article_id'] ) ) {
 			$size = count( $_POST['article_id'] );
 			for ( $i = 0; $i < $size; $i++ ) {
+
 				if ( isset( $_POST['article_price'][ $i ] ) && ( '' !== $_POST['article_price'][ $i ] ) ) {
-					$aticle_id           = ( isset( $_POST['article_id'][ $i ] ) ) ? sanitize_key( $_POST['article_id'][ $i ] ) : '';
-					$article_name        = ( isset( $_POST['article_name'][ $i ] ) ) ? sanitize_key( $_POST['article_name'][ $i ] ) : '';
-					$article_description = ( isset( $_POST['article_description'][ $i ] ) ) ? sanitize_key( $_POST['article_description'][ $i ] ) : '';
-					$article_price       = ( isset( $_POST['article_price'][ $i ] ) ) ? sanitize_key( $_POST['article_price'][ $i ] ) : '';
 
-					$this->create_product( $aticle_id, $article_name, $article_description, $article_price );
+					if( is_numeric( $_POST['article_price'][ $i ] )  ){
 
-					$_SESSION['success'] = 'Saved with suuccess!';
+						$aticle_id           = ( isset( $_POST['article_id'][ $i ] ) ) ? sanitize_text_field( $_POST['article_id'][ $i ] ) : '';
+						$article_name        = ( isset( $_POST['article_name'][ $i ] ) ) ? sanitize_text_field( $_POST['article_name'][ $i ] ) : '';
+						$article_description = ( isset( $_POST['article_description'][ $i ] ) ) ? sanitize_text_field( $_POST['article_description'][ $i ] ) : '';
+						$article_price       = ( isset( $_POST['article_price'][ $i ] ) ) ? sanitize_text_field( $_POST['article_price'][ $i ] ) : '';
+	
+						$this->create_product( $aticle_id, $article_name, $article_description, $article_price );
+	
+						$_SESSION['success'] = 'Saved with success!';
+
+					}else{
+					
+						$_SESSION['error'] = "Invalid price in the list.";
+	
+						break;
+					
+					}
+
 				}
 			}
 		}
@@ -97,9 +110,15 @@ class ArticleController {
 	public function checking() {
 		$nonce = ( isset( $_GET['_wpnonce'] ) ) ? sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'ctp-57-nonce' ) && isset( $_POST['email_access'] ) ) {
-			$email                          = ( isset( $_POST['email_access'] ) ) ? sanitize_email( wp_unslash( $_POST['email_access'] ) ) : '';
-			$_SESSION['email_access']       = $email;
-			$_SESSION['email_access_error'] = "Desole cette adresse n'a pas acces a l'article";
+
+			if( !is_email( $_POST['email_access'] ) ){
+				$_SESSION['email_access_error'] = "Invalid address.";
+			}else{
+				$email                          = ( isset( $_POST['email_access'] ) ) ? sanitize_email( wp_unslash( $_POST['email_access'] ) ) : '';
+				$_SESSION['email_access']       = $email;
+				$_SESSION['email_access_error'] = "Sorry! this address don't have access to this article. ";
+			}
+
 		}
 		$uri      = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : array();
 		$link     = isset( $_SERVER['REQUEST_URI'] ) ? explode( '/', $uri ) : array();

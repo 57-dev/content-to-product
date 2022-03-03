@@ -14,19 +14,19 @@
 	<div class="ctp_header row w-100 mx-0 d-flex justify-content-center">
 		<div class="ctp_header__navbar col-sm d-flex justify-content-center py-2 pl-2 container mx-0">
 			<a target="blank" href="https://web.facebook.com/57houseSI/" class="nav-item ctp-bg-secondary ctp-color-dark px-3" title="Facebook Community">
-				<i class="fa fa-facebook-square" aria-hidden="true"></i>
+				<i class="fa-1x fa-brands fa-facebook text-info" aria-hidden="true"></i>
 			</a> 
 			<a target="blank" href="https://twitter.com/57houseofficiel" class="nav-item ctp-bg-secondary ctp-color-dark px-3" title="Twitter Community">
-				<i class="fa fa-twitter-square text-info" aria-hidden="true"></i>
+				<i class="fa-1x fa-brands fa-twitter text-info" aria-hidden="true"></i>
+
 			</a>
-			<!--a target="blank" href="https://www.instagram.com/57houseofficiel/" class="nav-item ctp-bg-secondary ctp-color-dark px-3" title="Instagram Community">
-				<i class="fa fa-instagram text-danger" aria-hidden="true"></i>
-			</!--a-->
 			<a target="blank" href="https://www.linkedin.com/company/57-house" class="nav-item ctp-bg-secondary ctp-color-dark px-3" title="Linkedin Community">
-				<i class="fa fa-linkedin-square text-info" aria-hidden="true"></i>
+				<i class="fa-1x fa-brands fa-linkedin text-info" aria-hidden="true"></i>
+
 			</a>
 			<a target="blank" href="https://blog.57-house.org/article/web-development/ctp-official-user-documentation" class="nav-item ctp-bg-secondary ctp-color-dark px-3" title="Documentation">
-				<i class="fa fa-newspaper-o" aria-hidden="true"></i>
+				<i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+
 			</a>
 		</div>
 	</div>
