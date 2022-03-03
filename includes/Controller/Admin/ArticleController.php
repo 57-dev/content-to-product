@@ -194,7 +194,9 @@ class ArticleController {
 		$order                    = ( wc_get_order( $order_id ) );
 		$order_data               = $order->get_data();
 		$_SESSION['email_access'] = $order_data['billing']['email'];
-		include CTP_DIR . '/templates/visitor/thankyou.php';
+		if( isset( $_SESSION['email_access'] ) && is_email($_SESSION['email_access'] ) ){
+			include CTP_DIR . '/templates/visitor/thankyou.php';
+		}
 	}
 
 }
