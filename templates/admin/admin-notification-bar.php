@@ -11,5 +11,5 @@
 
 ?>
 <div class="ctp_notification ctp-bg-secondary ctp-shadow text-dark">
-	<small><i class="fa fa-envelope" aria-hidden="true"></i> <?php echo 'Turn your WordPress posts into a product in a few seconds'; ?></small>
+	<small><i class="fa-solid fa-envelope" aria-hidden="true"></i> <?php echo 'Turn your WordPress posts into a product in a few seconds'; ?></small>
 </div>
