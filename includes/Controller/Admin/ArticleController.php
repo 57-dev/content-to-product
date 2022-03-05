@@ -168,7 +168,7 @@ class ArticleController {
 	 * @return array
 	 */
 	public function remove_somw_checkout_fields( $fields ) {
-		$fields['billing']['billing_first_name'] = $_SESSION['email_access'] ?? '';
+		$fields['billing']['billing_first_name'] = isset( $_SESSION['email_access'] ) ? sanitize_email( $_SESSION['email_access'] ) : '';
 		unset( $fields['billing']['billing_company'] );
 		unset( $fields['billing']['name'] );
 		unset( $fields['billing']['billing_postcode'] );
@@ -194,7 +194,9 @@ class ArticleController {
 		$order                    = ( wc_get_order( $order_id ) );
 		$order_data               = $order->get_data();
 		$_SESSION['email_access'] = $order_data['billing']['email'];
-		include CTP_DIR . '/templates/visitor/thankyou.php';
+		if( isset( $_SESSION['email_access'] ) && is_email($_SESSION['email_access'] ) ){
+			include CTP_DIR . '/templates/visitor/thankyou.php';
+		}
 	}
 
 }

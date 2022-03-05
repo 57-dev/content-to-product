@@ -35,13 +35,13 @@ function ctp_alert() : string {
 
 	if ( isset( $_SESSION['success'] ) ) {
 		
-		$alert = '<div class="alert alert-success rounded-0">' . wp_kses( $_SESSION['success'] ) . '</div>';
+		$alert = '<div class="alert alert-success rounded-0">' . sanitize_text_field( $_SESSION['success'] ) . '</div>';
 
 		unset( $_SESSION['success'] );
 
 	}elseif ( isset( $_SESSION['error'] ) ) {
 		
-		$alert = '<div class="alert alert-danger rounded-0">' . wp_kses( $_SESSION['error'] ) . '</div>';
+		$alert = '<div class="alert alert-danger rounded-0">' . sanitize_text_field( $_SESSION['error'] ) . '</div>';
 
 		unset( $_SESSION['error'] );
 	}
